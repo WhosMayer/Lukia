@@ -1,59 +1,79 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Lukia
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Gestor de finanzas personales desarrollado por **Mayer Gómez** y **Milton Muñoz** para la asignatura Diseño de Contenido para Interfaces de Usuario.
 
-## About Laravel
+Lukia permite registrar ingresos y gastos, organizar movimientos por categorías y consultar el balance de un mes. Cada cuenta administra sus propios datos de forma independiente.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## Funciones implementadas
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+- Registro, inicio y cierre de sesión.
+- Categorías personales.
+- Creación, edición y eliminación de ingresos y gastos.
+- Filtro y resumen financiero mensual.
+- Paginación de movimientos.
+- Protección de los datos entre cuentas.
+- Interfaz adaptable en español.
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## Tecnologías
 
-## Learning Laravel
+- Laravel 12 y PHP 8.2 o superior.
+- MySQL o MariaDB mediante XAMPP.
+- Blade, Bootstrap y CSS.
+- PHPUnit para pruebas automatizadas.
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework. You can also check out [Laravel Learn](https://laravel.com/learn), where you will be guided through building a modern Laravel application.
+## Arquitectura MVC
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+```text
+app/
+├── Http/Controllers/
+│   ├── AuthController.php
+│   ├── CategoryController.php
+│   ├── DashboardController.php
+│   └── TransactionController.php
+└── Models/
+    ├── User.php
+    ├── Category.php
+    └── Transaction.php
 
-## Laravel Sponsors
+resources/views/
+├── auth.blade.php
+├── edit.blade.php
+├── layout.blade.php
+├── panel.blade.php
+└── transaction-form.blade.php
+```
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+Los modelos utilizan relaciones de Eloquent para representar los usuarios, sus categorías y sus movimientos. Los controladores separan la autenticación, el panel financiero, las categorías y las transacciones.
 
-### Premium Partners
+## Instalación local
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+1. Inicia MySQL desde XAMPP.
+2. Crea en phpMyAdmin una base de datos llamada `lukia`.
+3. Abre una terminal en la carpeta del proyecto y ejecuta:
 
-## Contributing
+```powershell
+composer install
+Copy-Item .env.example .env
+php artisan key:generate
+php artisan migrate
+php artisan serve --host=127.0.0.1 --port=8000
+```
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+4. Abre [http://127.0.0.1:8000](http://127.0.0.1:8000) y crea una cuenta.
 
-## Code of Conduct
+La configuración de ejemplo utiliza MySQL en `127.0.0.1:3306`, la base `lukia`, el usuario `root` y una contraseña vacía. Ajusta `.env` si tu instalación es diferente. Nunca publiques ese archivo.
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+## Pruebas
 
-## Security Vulnerabilities
+```powershell
+php artisan test
+```
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+La primera entrega cuenta con **8 pruebas y 49 verificaciones** sobre autenticación, privacidad, validación de montos, balance mensual, edición y eliminación de movimientos.
 
-## License
+## Próximas funciones
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+- Presupuestos y metas de ahorro.
+- Gráficos comparativos.
+- Recuperación de contraseña.
+- Asistente de inteligencia artificial.

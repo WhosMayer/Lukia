@@ -6,7 +6,7 @@ Gestor de finanzas personales de Mayer Gómez y Milton Muñoz para Diseño de Co
 
 Código implementado: registro e inicio de sesión, cierre de sesión, categorías personales, creación, edición y eliminación de ingresos y gastos, filtro mensual, balance y paginación. Interfaz en español con Bootstrap almacenado localmente.
 
-Pendiente de verificar en ejecución: la sesión de desarrollo restringida impide que PHP considere escribible bootstrap/cache. La instalación descargó dependencias, pero falló en la generación de caché. No se han ejecutado migraciones ni creado una base de datos real. No se ha subido este código a GitHub.
+La aplicación fue verificada con MySQL/MariaDB y también mediante pruebas automatizadas. La primera entrega cuenta con 8 pruebas y 49 verificaciones aprobadas. El código está publicado en GitHub.
 
 El asistente de IA, presupuestos, metas, gráficos y recuperación de contraseña quedan para siguientes entregas.
 
@@ -40,6 +40,6 @@ Las pruebas de `tests/Feature/FinanceTest.php` utilizan SQLite en memoria para c
 
 ## Repositorio
 
-https://github.com/WhosMayer/lukia
+https://github.com/WhosMayer/Lukia
 
-El repositorio remoto todavía contiene solo el README inicial. Antes de subir, excluye `.env`, `vendor`, `node_modules`, bases locales y archivos de sesión mediante `.gitignore`.
+El repositorio contiene el código fuente de la primera entrega. `.env`, `vendor`, `node_modules`, bases locales y archivos de sesión están excluidos mediante `.gitignore`.
