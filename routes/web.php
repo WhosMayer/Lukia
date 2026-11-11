@@ -6,7 +6,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\TransactionController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', fn () => redirect(auth()->check() ? '/panel' : '/login'));
+Route::get('/', fn () => redirect()->route(auth()->check() ? 'dashboard' : 'login'));
 
 Route::middleware('guest')->group(function () {
     Route::view('/login', 'auth', ['register' => false])->name('login');

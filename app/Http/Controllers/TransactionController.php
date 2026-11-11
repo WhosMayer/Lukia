@@ -14,7 +14,9 @@ class TransactionController extends Controller
     {
         $request->user()->transactions()->create($this->validatedData($request));
 
-        return redirect('/panel?month='.substr((string) $request->string('date'), 0, 7))
+        return redirect()->route('dashboard', [
+            'month' => substr((string) $request->string('date'), 0, 7),
+        ])
             ->with('status', 'Movimiento registrado.');
     }
 
@@ -31,7 +33,9 @@ class TransactionController extends Controller
         $transaction = $this->ownedTransaction($request, $id);
         $transaction->update($this->validatedData($request));
 
-        return redirect('/panel?month='.substr((string) $request->string('date'), 0, 7))
+        return redirect()->route('dashboard', [
+            'month' => substr((string) $request->string('date'), 0, 7),
+        ])
             ->with('status', 'Movimiento actualizado.');
     }
 
